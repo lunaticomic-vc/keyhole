@@ -1,0 +1,211 @@
+/* Gallery Scene Styles */
+body {
+  background-image: url('../assets/img/Untitled_Artwork-5.jpg');
+  overflow: auto;
+}
+
+/* Main Gallery Container */
+.gallery-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: flex;
+  gap: 80px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+}
+
+/* Thumbnail Wrapper */
+.thumbnail-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Thumbnail Styling with Glassmorphism */
+.thumbnail {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition-smooth);
+  will-change: transform;
+  
+  /* Glassmorphism Effect */
+  background: var(--glass-white);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Thumbnail Inner Content */
+.thumbnail-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 235, 100, 0.05));
+  position: relative;
+}
+
+/* Placeholder Text */
+.thumbnail-placeholder {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Yellow Gradient Overlay at Bottom */
+.thumbnail::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, var(--overlay-yellow), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Thumbnail Label */
+.thumbnail-label {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: -10px;
+}
+
+/* Floating Animation - Alternating for each thumbnail */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.thumbnail-wrapper:nth-child(1) .thumbnail {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+.thumbnail-wrapper:nth-child(2) .thumbnail {
+  animation: float 3.5s ease-in-out infinite;
+  animation-delay: 1.75s;
+}
+
+/* Hover Effect - Gentle Upward Movement */
+.thumbnail:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Prevent animation conflict on hover */
+.thumbnail:hover {
+  animation-play-state: paused;
+}
+
+/* Image placeholder (for when images are added) */
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Link wrapper */
+.thumbnail-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gallery-grid {
+    gap: 60px;
+  }
+  
+  .thumbnail {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .thumbnail-label {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-container {
+    padding: 40px 20px;
+  }
+  
+  .gallery-grid {
+    gap: 40px;
+  }
+  
+  .thumbnail {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .thumbnail-placeholder {
+    font-size: 14px;
+  }
+  
+  .thumbnail-label {
+    font-size: 18px;
+  }
+}
+
+/* Fade in animation on page load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gallery-grid {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.thumbnail-wrapper:nth-child(1) .thumbnail {
+  animation: float 3.5s ease-in-out infinite, fadeIn 0.8s ease-out;
+}
+
+.thumbnail-wrapper:nth-child(2) .thumbnail {
+  animation: float 3.5s ease-in-out infinite 1.75s, fadeIn 0.8s ease-out 0.2s;
+}
+
+.thumbnail-wrapper:nth-child(1) {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.thumbnail-wrapper:nth-child(2) {
+  animation: fadeIn 0.8s ease-out 0.2s;
+}

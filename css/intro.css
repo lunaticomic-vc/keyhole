@@ -1,0 +1,106 @@
+/* Intro Scene Styles */
+body {
+  background-image: url('../assets/img/Untitled_Artwork-5.jpg');
+  cursor: default;
+}
+
+/* Main Container - Full Screen Centering */
+.intro-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Keyhole Container */
+.keyhole-wrapper {
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--transition-smooth);
+  will-change: transform;
+}
+
+.keyhole-wrapper:hover {
+  transform: scale(1.05);
+}
+
+/* Keyhole Image */
+.keyhole {
+  width: 450px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+}
+
+/* Custom Cursor - Key Icon */
+.keyhole-wrapper:hover {
+  cursor: url('../assets/img/Untitled_Artwork-4.png') 16 16, pointer;
+}
+
+/* Zoom Animation */
+@keyframes zoomIn {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(30);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(35);
+    opacity: 0;
+  }
+}
+
+/* Animation State */
+.intro-container.zooming {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.intro-container.zooming .keyhole-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: zoomIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+  z-index: 1000;
+}
+
+/* Overlay for smooth transition */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  z-index: 999;
+}
+
+.transition-overlay.active {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .keyhole {
+    width: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .keyhole {
+    width: 250px;
+  }
+}
