@@ -1,6 +1,6 @@
 /* Intro Scene Styles */
 body {
-  background-image: url('../assets/img/Untitled_Artwork-5.jpg');
+  background-image: url('../assets/img/background.jpg');
   cursor: default;
 }
 
@@ -35,8 +35,12 @@ body {
 }
 
 /* Custom Cursor - Key Icon */
+.keyhole-wrapper {
+  cursor: url('../assets/img/key-cursor-xl.png') 64 64, pointer;
+}
+
 .keyhole-wrapper:hover {
-  cursor: url('../assets/img/Untitled_Artwork-4.png') 16 16, pointer;
+  cursor: url('../assets/img/key-cursor-xl.png') 64 64, pointer;
 }
 
 /* Zoom Animation */
